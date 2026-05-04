@@ -44,7 +44,6 @@ The agent will prompt you to describe what kind of papers you are looking for. T
 
 read eval.md for more info
 
-
 ## Group Member Contributions
 
 - Christian built `Assistant.py` — agent setup, LLM configuration, and the conversation call flow.
