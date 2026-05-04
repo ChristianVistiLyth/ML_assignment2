@@ -47,5 +47,5 @@ read eval.md for more info
 
 ## Group Member Contributions
 
-Christian Built `Assistant.py` — agent setup, LLM configuration, and the conversation call flow |
-Anders Built `tools.py` — Semantic Scholar API integration, and ran evaluation on 10 prompts |
+- Christian built `Assistant.py` — agent setup, LLM configuration, and the conversation call flow.
+- Anders built `tools.py` — Semantic Scholar API integration, and ran evaluation on 10 prompts.

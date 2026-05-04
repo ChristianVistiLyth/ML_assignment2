@@ -9,9 +9,6 @@ from dotenv import load_dotenv
 import autogen
 
 from tools import search_papers
-load_dotenv()
-
-from tools import search_papers
 
 load_dotenv()
 
@@ -75,7 +72,7 @@ user_proxy = autogen.UserProxyAgent(
 @user_proxy.register_for_execution()
 @assistant.register_for_llm(
     name="search_papers",
-    description="Search {PROVIDER} for relevant papers by topic and optional year and citation filters."
+    description=f"Search {PROVIDER} for relevant papers by topic and optional year and citation filters."
 )
 def _search_papers(
     topic: Annotated[str, "Research topic or query string"],
