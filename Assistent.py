@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 import autogen
+from autogen.oai.mistral import MistralAIClient
 
 load_dotenv()
 
@@ -13,10 +14,13 @@ academic paper they are looking for
 
 config_list = [
     {
-        "model": os.getenv("MODEL_NAME", "gpt-4o-mini"),
-        "api_key": os.getenv("KEY"),
+        "model": os.getenv("MODEL_NAME", "mistral-small-latest"),
+        "api_key": os.getenv("MISTRAL_API_KEY"),
+        "model_client_cls": "MistralAIClient",
     }
 ]
+
+autogen.AssistantAgent.register_model_client(model_client_cls=MistralAIClient)
 
 assistant = autogen.AssistantAgent(
     name="ResearchAgent",
