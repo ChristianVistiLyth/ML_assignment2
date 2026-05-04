@@ -8,16 +8,22 @@ sources, avoided hallucination and explained itself.
 ## Tests
 
 1. Find papers on RAG — broad topic
-Answer:
+Answer: Returned  20 papers on RAG correctly from Semantic Scholar.
+All correct topic and valid links. Summary was 1 sentence. Didn't find any fabricated entries.
+# Relevant, year, no hallucination, useful.
 
 2. Find papers using k-nearest neighbors on the MNIST handwritten digit dataset — narrow topic
-Answer:
+Answer: Returned 10 papers all on the topic. All with valid links. Summaries from abstract.
+# Relevant, year, no hallucination, useful.
 
 3. Find 3 papers on transformers published before 2018: before year
-Answer:
+Answer: Found 3 papers on electrical transformers, which is correctly identified not be be neural network
+transformers. It correctly returned: no result, which mean it respected the constraint / rules.
+# No hallucination, relevant, year, not useful. 
 
 4. Find papers on diffusion models published after 2022: after year
-Answer:
+Answer: Returned 3 papers all from 2023 - so year constraint respected.
+# No hallucination, relevant, year, useful.
 
 5. Find papers on attention mechanisms from 2017: exact year
 Answer:
@@ -38,3 +44,4 @@ Answer:
 Answer:
 
 ## Findings
+

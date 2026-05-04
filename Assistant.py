@@ -83,7 +83,7 @@ def _search_papers(
     year_max: Annotated[Optional[int], "Latest publication year"] = None,
     min_citations: Annotated[Optional[int], "Minimum citation count"] = None,
     max_citations: Annotated[Optional[int], "Maximum citation count"] = None,
-    limit: Annotated[int, "Max results (1-100)"] = 20,
+    limit: Annotated[int, "Max results (1-100)"] = 5,
 ) -> str:
     # Step 5 (Deterministic): Search for candidate papers. Filter candidates by year and citation count.
     return search_papers(topic, year_min, year_max, min_citations, max_citations, limit)
