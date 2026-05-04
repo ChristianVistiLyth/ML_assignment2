@@ -1,12 +1,8 @@
 
-import asyncio
 import os
 
 from dotenv import load_dotenv
-from autogen_agentchat.agents import AssistantAgent
-from autogen_agentchat.messages import TextMessage
-from autogen_core import CancellationToken
-from autogen_ext.models.openai import OpenAIChatCompletionClient
+import autogen
 
 load_dotenv()
 
@@ -15,36 +11,26 @@ You are a research-paper assistant. The user will describe the kind of
 academic paper they are looking for
 """
 
+config_list = [
+    {
+        "model": os.getenv("MODEL_NAME", "gpt-4o-mini"),
+        "api_key": os.getenv("KEY"),
+    }
+]
 
-async def main():
-    client = OpenAIChatCompletionClient(
-        model=os.getenv("MODEL_NAME", "gpt-4o-mini"),
-        api_key=os.getenv("KEY"),
-    )
+assistant = autogen.AssistantAgent(
+    name="ResearchAgent",
+    system_message=SYSTEM_PROMPT,
+    llm_config={"config_list": config_list},
+)
 
-    agent = AssistantAgent(
-        name="ResearchAgent",
-        model_client=client,
-        system_message=SYSTEM_PROMPT,
-    )
-
-    print("Research Agent ready. Type 'quit' to exit.\n")
-
-    while True:
-        try:
-            query = input("You ▸ ").strip()
-        except (EOFError, KeyboardInterrupt):
-            break
-
-        if not query or query.lower() in {"quit", "exit", "q"}:
-            break
-
-        response = await agent.on_messages(
-            [TextMessage(content=query, source="user")],
-            cancellation_token=CancellationToken(),
-        )
-        print(f"\nAgent ▸ {response.chat_message.content}\n")
-
+user_proxy = autogen.UserProxyAgent(
+    name="User",
+    human_input_mode="ALWAYS",
+    max_consecutive_auto_reply=0,
+    code_execution_config=False,
+)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    print("Research Agent ready. Type 'quit' to exit.\n")
+    user_proxy.initiate_chat(assistant, message=input("You ▸ ").strip())
