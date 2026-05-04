@@ -1,4 +1,5 @@
 import os
+import json
 import time
 import requests
 from dotenv import load_dotenv
@@ -48,8 +49,16 @@ def search_papers(topic, year_min=None, year_max=None,
 
     if max_citations is not None:
         papers = [p for p in papers if (p.get("citationCount") or 0) <= max_citations]
-    return papers
 
-if __name__ == "__main__":
-    from pprint import pprint
-    pprint(search_papers("retrieval-augmented generation", year_max=2020, limit=3))
+    result = []
+    for p in papers:
+        doi = (p.get("externalIds") or {}).get("DOI")
+        result.append({
+            "title": p.get("title"),
+            "authors": [a["name"] for a in p.get("authors") or []],
+            "year": p.get("year"),
+            "citation_count": p.get("citationCount"),
+            "url": f"https://doi.org/{doi}" if doi else p.get("url"),
+            "abstract": p.get("abstract"),
+        })
+    return json.dumps(result)
