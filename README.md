@@ -48,3 +48,24 @@ read eval.md for more info
 
 - Christian built `Assistant.py` — agent setup, LLM configuration, and the conversation call flow.
 - Anders built `tools.py` — Semantic Scholar API integration, and ran evaluation on 10 prompts.
+
+
+## Reflection
+
+What worked well?
+Pretty easy to use the mistral model
+
+What failed or was unreliable?
+Package version of the api ofen has version issues.
+
+How often did the agent need tool calls?
+only ones at startup.
+
+Did the LLM ever hallucinate?
+no but we had short context. maybe if we made som longer conversations it would.
+
+How did you prevent incorrect answers?
+by making the system prompt as specific as posssible
+
+What would you improve with more time?
+more test cases with different scenaries. maybe a better/paid model.
