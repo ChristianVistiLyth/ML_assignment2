@@ -62,7 +62,7 @@ How often did the agent need tool calls?
 only ones at startup.
 
 Did the LLM ever hallucinate?
-no but we had short context. maybe if we made som longer conversations it would.
+no but we had short context. maybe if we made some longer conversations it would.
 
 How did you prevent incorrect answers?
 by making the system prompt as specific as posssible
